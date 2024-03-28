@@ -1,0 +1,36 @@
+.home-page header {
+    background-image: linear-gradient(rgba(5, 10, 35, 0.75), rgba(5, 10, 35, 0.75)), url(../../../Assets/Images/header-page-1.jpg);
+}
+
+header {
+    background-size: cover;
+    background-position: center;
+}
+
+.blog-section {
+    background-image: linear-gradient(rgba(5, 10, 35, 0.75), rgba(5, 10, 35, 0.75)), url(../../../Assets/Images/header-page-2.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.home-page .btn-outline-light {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.home-page .btn-outline-light:hover {
+    background-color: #ffffff;
+    color: #4A2FBD;
+}
+
+.custom-btn {
+    background-image: linear-gradient(90.21deg, #0e7d81 -5.91%, #4A2FBD 111.58%);
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .custom-btn:hover {
+    background-image: linear-gradient(90.21deg, #4A2FBD -5.91%, #0e7d81 111.58%);
+    color: white;
+  }

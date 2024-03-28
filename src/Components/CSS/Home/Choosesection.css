@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  --primary-color: #0e7d81;
+  --secondary-color: #4A2FBD;
+}
+
+.custom-svg {
+  width: 48px;
+  height: 48px;
+  fill: linear-gradient(90.21deg, var(--primary-color) -5.91%, var(--secondary-color) 111.58%);
+}
