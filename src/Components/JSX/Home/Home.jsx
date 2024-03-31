@@ -35,7 +35,7 @@ export let Home = () => {
 
   return (
     <div className="home-page">
-        <MyNavBar/>
+      <MyNavBar />
       <header className="h-100 min-vh-100 d-flex align-items-center text-light">
         <div className="container d-flex flex-column align-items-center">
           <h2>Welcome To</h2>
@@ -47,21 +47,21 @@ export let Home = () => {
             ratione expedita! Porro, ut.
           </p>
           <div className="d-flex flex-column flex-sm-row align-items-center">
-              <button
-                type="button"
-                className="btn custom-btn btn-primary border-0 btn-lg mx-0 mx-sm-2 my-2 my-sm-0"
-                onClick={()=> navigate("/mainpage")}
-              >
-                SignUp/Login
-              </button>
-            <Link to="/contact">
-              <button
-                type="button"
-                className="btn btn-outline-light btn-lg mx-0 mx-sm-2 my-2 my-sm-0"
-              >
-                Contact Us
-              </button>
-            </Link>
+            <button
+              type="button"
+              className="btn custom-btn btn-primary border-0 btn-lg mx-0 mx-sm-2 my-2 my-sm-0"
+              onClick={() => navigate("/Mainpage")}
+            >
+              SignUp/Login
+            </button>
+
+            <button
+              type="button"
+              className="btn btn-outline-light btn-lg mx-0 mx-sm-2 my-2 my-sm-0"
+              onClick={() => navigate("/Groupspage")}
+            >
+              Contact Us
+            </button>
           </div>
         </div>
       </header>
@@ -129,7 +129,7 @@ export let Home = () => {
           </Link>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
