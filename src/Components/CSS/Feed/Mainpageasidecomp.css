@@ -1,0 +1,9 @@
+#asidecompnav{
+    background: linear-gradient(90.21deg, #4b389c -5.91%, #0e7d81 111.58%);
+}
+#asidecompbtn{
+    background: linear-gradient(90.21deg, #4b389c -5.91%, #0e7d81 111.58%);
+}
+#asidecompbtn:hover{
+    background: white;
+}

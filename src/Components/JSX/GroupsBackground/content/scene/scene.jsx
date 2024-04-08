@@ -2,9 +2,9 @@ import {Scene as SceneThree } from "three";
 import Camera from "../class/camera";
 import Lights from "../class/lights";
 import Loader from "../class/loader";
-import Sun from "../class/models/sun";
+// import Sun from "../class/models/sun";
 import Background from "../class/background";
-import Venus from "../class/models/venus";
+// import Venus from "../class/models/venus";
 import Neptune from "../class/models/neptune";
 import Jupiter from "../class/models/jupiter";
 

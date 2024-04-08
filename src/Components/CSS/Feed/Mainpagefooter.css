@@ -1,42 +1,39 @@
-
-.footer-links:hover{
-    color: #0e7d81;
+#link1 {
+  color: white;
+  background-image: linear-gradient(
+    90.21deg,
+    var(--primary-color) -5.91%,
+    var(--secondary-color) 111.58%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+#link1:hover {
+  color: #0e7d81;
+}
+#ContactBtn{
+  background-color: white;
+}
+#ContactBtn:hover{
+  background-image: linear-gradient(90.21deg, #4b389c -5.91%, #46349a 111.58%);
+  color: white;
+  
 }
 
-#footer1{
-    background-color: #6187bc8f;
-}
-.footer .footer-button{
-    color: #4A2FBD;
-    border-color: #4A2FBD;
-}
-.footer .footer-button:hover{
-    background-image: linear-gradient(90.21deg, #4A2FBD -5.91%, #0e7d81 111.58%);
-    color: white;
-    border: none;
-}
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
-:root {
-  --primary-color: #4A2FBD;
-  --secondary-color:#0e7d81 ;
+#footer1 {
+  background: linear-gradient(90.21deg, #4b389c -5.91%, #0e7d81 111.58%);
 }
 
 #customGradient {
-  fill: linear-gradient(90.21deg, var(--primary-color) -5.91%, var(--secondary-color) 111.58%);
+  background-color: #ffffff;
 }
-.footer-links {
-    color: transparent;
-    background-image: linear-gradient(90.21deg, var(--primary-color) -5.91%, var(--secondary-color) 111.58%);
-    background-clip: text;
-    -webkit-background-clip: text;
-  }
-.custom-svg:hover {
+
+#custom-svg:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease;
 }
-.custom-svg{
-    width:32px;
-    height: 32px;
+#custom-svg {
+  width: 32px;
+  height: 32px;
+  color: white;
 }
-

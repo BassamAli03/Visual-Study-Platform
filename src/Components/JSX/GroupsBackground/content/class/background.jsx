@@ -1,4 +1,4 @@
-import { Mesh,SphereGeometry,TextureLoader, BackSide, MeshPhongMaterial, Geo } from "three";
+import { Mesh,SphereGeometry,TextureLoader, BackSide, MeshPhongMaterial } from "three";
 
 export default class Background{
     constructor(scene){

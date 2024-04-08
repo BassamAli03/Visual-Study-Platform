@@ -35,7 +35,11 @@ export default class Neptune {
         function animate() {
             if (self.object) 
             {   
-                self.object.rotation.y += 0.001;
+                // self.object.rotation.x += 0.04;
+               
+                self.object.rotation.y += 0.04;
+                // self.object.rotation.z += 0.04;
+
             }
             requestAnimationFrame(animate);
         }

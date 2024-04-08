@@ -30,6 +30,8 @@ header h1 {
   color: #212529;
 }
 
+
+
 @media only screen and (max-width: 992px) {
   #basic-navbar-nav {
     background-color: #ffffff;

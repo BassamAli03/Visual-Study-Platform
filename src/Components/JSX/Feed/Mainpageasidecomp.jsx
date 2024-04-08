@@ -1,5 +1,6 @@
 import React, { Children, createContext, useContext, useState } from "react";
 import { ChevronLeft, ChevronRight, MoreVertical } from "lucide-react";
+import "../../CSS/Feed/Mainpageasidecomp.css";
 
 const SidebarContext = createContext();
 export let MySidebar = ({ children }) => {
@@ -8,8 +9,8 @@ export let MySidebar = ({ children }) => {
   return (
     <aside className="h-screen position-fixed mt-20">
       <nav
+        id="asidecompnav"
         className="h-full flex flex-col border-r shadow-sm"
-        style={{ backgroundColor: "#6187bc8f" }}
       >
         <div className="p-3 pb-3 flex justify-between items-center">
           <img
@@ -20,9 +21,9 @@ export let MySidebar = ({ children }) => {
             alt=""
           />
           <button
+            id="asidecompbtn"
             onClick={() => setExpanded((curr) => !curr)}
-            className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100"
-            style={{ backgroundColor: "#6187bc8f" }}
+            className="p-1.5 rounded-lg border-1"
           >
             {expanded ? <ChevronLeft /> : <ChevronRight />}
           </button>
@@ -44,8 +45,8 @@ export let MySidebar = ({ children }) => {
             }`}
           >
             <div className="leading-4">
-              <h4 className="font-semibold">Bassam</h4>
-              <span className="ms-1 text-xs text-black">bassam@gmail.com</span>
+              <h4 className="font-semibold text-white">Bassam</h4>
+              <span className="ms-1 text-xs text-white">bassam@gmail.com</span>
             </div>
             <MoreVertical size={20} />
           </div>
@@ -60,11 +61,11 @@ export let Sidebaritem = ({ icon, text, active, alert }) => {
   return (
     <li
       className={`relative flex items-center py-2 px-3 my-1 
-                    font-medium rounded-md cursor-pointer transition-colors group
+                    font-medium rounded-md cursor-pointer transition-colors group 
                     ${
                       active
-                        ? "bg-gradient-to-r from-indio-200 to-indigo-100 text-indigo-800"
-                        : "hover:bg-indigo-50 text-black"
+                        ? "bg-gradient-to-r from-indio-200 to-indigo-100 text-black"
+                        : "hover:bg-indigo-50 text-white"
                     }
                   `}
     >
