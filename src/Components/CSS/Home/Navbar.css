@@ -3,16 +3,19 @@
     height:60px;
 }
 
-.navbar .nav-link {
-    font-size: 14px;
+#navb1 #navlinks{
+  font-size: 14px;
     color: #ffffff;
-  }
+}
+
   
-  .navbar .navbar-nav .nav-link:hover {
+  #navb1 .navbar-nav #navlinks:hover {
     color: #4A2FBD;
   }
   
   nav .navbar-toggler:focus {
     box-shadow: none;
   }
+  
+  
   

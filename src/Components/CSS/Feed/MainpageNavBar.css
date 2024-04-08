@@ -4,7 +4,7 @@
     margin-top: 30px;
 }
 #mainnav{
-  background-color: #6187BC8F;
+  background: linear-gradient(90.21deg, #4b389c -5.91%, #0e7d81 111.58%);
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
 }
 #dropdown{

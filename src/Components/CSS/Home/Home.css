@@ -34,3 +34,12 @@ header {
     background-image: linear-gradient(90.21deg, #4A2FBD -5.91%, #0e7d81 111.58%);
     color: white;
   }
+
+  ::-webkit-scrollbar-thumb{
+    background: linear-gradient(transparent,#30ff00);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(transparent,#00c6ff);
+    border-radius: 6px;
+  }

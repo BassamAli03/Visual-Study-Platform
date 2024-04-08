@@ -1,0 +1,92 @@
+#container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+#container::-webkit-scrollbar {
+  width: 0;
+}
+
+#container.show-scrollbar::-webkit-scrollbar {
+  width: auto;
+}
+
+section {
+  width: auto;
+  height: 100vh;
+  overflow: hidden;
+  scroll-snap-align: center;
+}
+
+#grouph1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+#grouppara {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#sectionOne {
+  height: 100vh;
+  width: 50vw;
+  padding: 80px;
+}
+
+
+#sectionTwo{
+  height: 100vh;
+  width: 50vw;
+  padding: 80px;
+}
+
+/* #sectionThree {
+  height: 40vh;
+  width: 100vw;
+  padding: 80px;
+} */
+
+#nav1 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 32px;
+  color: white;
+  padding: 15px 60px 0 60px;
+  position: fixed;
+  width: 100%;
+}
+#sun {
+  text-decoration: none;
+  color: white;
+}
+#mercury {
+  text-decoration: none;
+  color: white;
+}
+#venus {
+  text-decoration: none;
+  color: white;
+}
+
+#sun:hover {
+  color: rgb(225, 177, 31);
+}
+#mercury:hover {
+  color: rgb(111, 111, 111);
+}
+#venus:hover {
+  color: rgb(198, 67, 2);
+}
