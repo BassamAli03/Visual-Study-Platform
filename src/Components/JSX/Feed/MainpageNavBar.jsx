@@ -21,8 +21,8 @@ export let MyNavBar = () => {
       <Navbar id="mainnav" expand="lg" className="position-fixed w-100 h-20">
         <Container>
           <Navbar.Brand>
-            <Link to="/" className="navbar-brand">
-              <img src={icon} alt="Icon" className="icon-img" />
+            <Link className="navbar-brand" style={{ pointerEvents: 'none' }}>
+              <img src={icon} alt="Icon" className="icon-img"  />
             </Link>
           </Navbar.Brand>
           <Dropdown id="dropdown" as={Nav.Item}>

@@ -1,0 +1,94 @@
+.maintitle {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: #8d61ec;
+}
+.service-top {
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 60px 150px;
+  padding-bottom: 20px;
+}
+.sub {
+  text-align: center;
+  color: #868f97;
+  line-height: 1.3;
+  font-size: 20px;
+  margin-bottom: 50px;
+}
+#mainform{
+    width: 70%;
+    min-width: 450px;
+}
+.input-row{
+display: flex;
+justify-content: space-between;
+}
+.side{
+    width: 45%;
+}
+
+#ifield , #tarea{
+border: 0;
+border-radius: 0;
+border-bottom: 1px solid #fff;
+background: transparent;
+outline: none;
+text-align: left;
+font-size: 14.5px;
+width: 100%;
+color: #fff;
+padding: .6rem;
+padding-left: 0;
+}
+
+#ifield:-webkit-autofill,
+#ifield:-webkit-autofill:hover,
+#ifield:-webkit-autofill:focus,
+#ifield:-webkit-autofill:active{
+    box-shadow: 0 0 0 30px #0b0b0f inset !important;
+    -webkit-box-shadow: 0 0 0 30px #0b0b0f inset !important;
+    -webkit-text-fill-color:  #fff !important;
+}
+#tarea{
+    resize: none;
+    line-height: 1.4;
+    margin-top: 90px;
+    
+}
+
+#sendbtn{
+    background: transparent;
+    border: 1px solid #8d61ec;
+    display: block;
+    margin: 80px auto 0;
+    position: relative;
+    color: #8d61ec;
+    padding: 15px 30px;
+}
+#sendbtn:hover{
+    color: #fff;
+}
+#sendbtn:hover::after{
+    width: 100%;
+    left: 0;
+    right: unset;
+}
+#sendbtn::after{
+    content: "";
+    position: absolute;
+    width: 0;
+    top: 0;
+    bottom: 0;
+    left: unset;
+    right: 0;
+    transition: all 0.2s linear;
+    height: 100%;
+    z-index: -1;
+    background-color: #8d61ec;
+}

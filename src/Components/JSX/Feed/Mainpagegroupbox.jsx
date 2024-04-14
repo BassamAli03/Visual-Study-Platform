@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../../CSS/Feed/Mainpagegroupbox.css"
 
 export let GroupDiv = () => {
   const [groupInfo, setGroupInfo] = useState({
@@ -20,7 +21,6 @@ export let GroupDiv = () => {
     <div
       id="groupdiv"
       className="mt-24 shadow-sm h-fit w-72"
-      style={{ backgroundColor: "#6187bc8f" }}
     >
       <h5 className="p-1 ms-3 underline mb-3">Your Group</h5>
 
@@ -35,10 +35,10 @@ export let GroupDiv = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        <button className="post-button bg-primary rounded w-14 font-bold border">
+        <button id="likesbtn" className="bg-primary rounded w-14 font-bold border">
           Likes
         </button>
-        <button className="post-button bg-primary rounded w-14 font-bold border">
+        <button  id="viewsbtn" className ="bg-primary rounded w-14 font-bold border">
           Views
         </button>
       </div>

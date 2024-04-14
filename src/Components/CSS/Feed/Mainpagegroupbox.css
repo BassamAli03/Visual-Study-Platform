@@ -1,0 +1,9 @@
+#groupdiv{
+    background: linear-gradient(180deg, #4b389c -5.91%, #0e7d81 111.58%);
+}
+#likesbtn:focus{
+    color: white;
+}
+#viewsbtn:focus{
+    color: white;
+}

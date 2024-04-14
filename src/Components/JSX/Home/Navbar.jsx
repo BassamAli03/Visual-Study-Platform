@@ -1,4 +1,4 @@
-import { Link} from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -7,6 +7,7 @@ import "../../CSS/Home/Navbar.css";
 import icon from '../../../Assets/Images/icon.svg';
 
 export let MyNavBar=()=>{
+  const navigate = useNavigate();
     return(
         <Navbar expand="lg" id='navb1' className='position-absolute w-100'>
         <Container>
@@ -26,9 +27,9 @@ export let MyNavBar=()=>{
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto justify-content-end w-100'>
               <Nav.Link href='/' id='navlinks' className='text-uppercase'>Home</Nav.Link>
-              <Nav.Link href='/auth' id='navlinks' className='text-uppercase'>SignUp/Login</Nav.Link>
-              <Nav.Link href='/about' id='navlinks' className='text-uppercase'>About us</Nav.Link>
-              <Nav.Link href='/contact' id='navlinks' className='text-uppercase'>Get in touch</Nav.Link>
+              <Nav.Link onClick={() => navigate("/SignUp")}  id='navlinks' className='text-uppercase'>SignUp/Login</Nav.Link>
+              <Nav.Link onClick={() => navigate("/AboutUs")} id='navlinks' className='text-uppercase'>About us</Nav.Link>
+              <Nav.Link onClick={() => navigate("/ContactUs")} id='navlinks' className='text-uppercase'>Get in touch</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
