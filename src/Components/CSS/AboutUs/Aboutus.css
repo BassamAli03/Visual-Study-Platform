@@ -1,0 +1,130 @@
+#section-white {
+  padding: 70px 0;
+}
+#section-title {
+  margin-top: 30px;
+  font-size: 30px;
+  font-weight: 800;
+  color: #8d61ec;
+}
+#section-sub {
+  color: #868f97;
+  line-height: 1.5;
+}
+
+#team-item {
+  opacity: 0.9;
+  background: lightgray url('/public/aboutusback.jpg');
+  text-align: center;
+  margin: 20px 0;
+  padding: 20px; 
+  border-radius: 8px;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#team-item:hover {
+  background: #8d61ec;
+  transform: translateY(-5px);
+}
+
+#mainheading {
+  margin: 20px !important;
+  color: #333;
+  font-size: 18px;
+  font-weight: 700; 
+  text-transform: uppercase;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+#mainheading:hover {
+  color: #ddd;
+}
+
+#team-info {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+#team-infop {
+  color: #666;
+  font-style: italic;
+}
+#team-info::after {
+  background: #008aff;
+  background: -webkit-linear-gradient(135deg, #6b02ff 0%, #985bef 100%);
+  background: -o-linear-gradient(135deg, #6b02ff 0%, #985bef 100%);
+  background: -moz-linear-gradient(135deg, #6b02ff 0%, #985bef 100%);
+  background: linear-gradient(135deg, #6b02ff 0%, #985bef 100%);
+
+  display: inline-block;
+  vertical-align: middle;
+  content: "";
+  width: 50px;
+  height: 3px;
+  margin-top: -20px;
+}
+#team-img {
+  max-width: 140px;
+  justify-self: center;
+  padding: 6px 6px;
+  background-color: #dedede;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#team-icon {
+  margin-right: 32px;
+  margin-top: 15px;
+}
+#icons {
+  display: inline-block;
+  margin: 0 5px;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+#twitter,
+#pinterest,
+#facebook,
+#instagram {
+  margin: 0;
+  display: inline-block;
+  padding: 8px 8px;
+  width: 34px;
+  height: 34px;
+  font-size: 18px;
+  line-height: 18px;
+  border-radius: 50%;
+  color: #fff;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+#twitter {
+  background-color: #4099ff;
+}
+#pinterest {
+  background-color: #c92228;
+}
+#facebook {
+  background-color: #db5998;
+}
+#instagram {
+  background-color: #ea4c89;
+}
+#twitter:hover,
+#pinterest:hover,
+#facebook:hover,
+#instagram:hover {
+  color: #dedede;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}

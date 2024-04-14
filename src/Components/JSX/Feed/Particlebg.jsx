@@ -20,10 +20,10 @@ const Particlebg = (props) => {
   const options = useMemo(() => ({
     background: {
       color: {
-        value: "#ffffff",
+        value: "#0e7d81",
       },
     },
-    fpsLimit: 120,
+    fpsLimit: 999,
     interactivity: {
       events: {
         onClick: {

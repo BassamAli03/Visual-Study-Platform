@@ -5,6 +5,7 @@ import {
     faVideo,
     faImage,
   } from "@fortawesome/free-solid-svg-icons";
+  import "../../CSS/Feed/Mainpagepostbox.css";
 
 
 
@@ -19,7 +20,7 @@ import {
     };
 
   return (
-    <div id="postbox" className="mt-24 shadow-sm h-36 w-100" style={{ backgroundColor: "#6187bc8f" }}>
+    <div id="postbox" className="mt-24 shadow-sm h-36 w-100">
       <div className="flex">
       <div className="w-12 h-12 rounded-full bg-blue-500 ms-2 mt-2">
       <img

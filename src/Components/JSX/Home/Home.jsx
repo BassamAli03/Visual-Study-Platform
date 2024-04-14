@@ -30,7 +30,7 @@ export let Home = () => {
             <button
               type="button"
               className="btn custom-btn btn-primary border-0 btn-lg mx-0 mx-sm-2 my-2 my-sm-0"
-              onClick={() => navigate("/Mainpage")}
+              onClick={() => navigate("/SignUp")}
             >
               SignUp/Login
             </button>
@@ -38,7 +38,7 @@ export let Home = () => {
             <button
               type="button"
               className="btn btn-outline-light btn-lg mx-0 mx-sm-2 my-2 my-sm-0"
-              onClick={() => navigate("/Groupspage")}
+              onClick={() => navigate("/ContactUs")}
             >
               Contact Us
             </button>

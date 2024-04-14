@@ -4,7 +4,7 @@ export default class Background{
     constructor(scene){
         const Background = new SphereGeometry(90,25,25)
         const loader = new TextureLoader()
-        const texture = loader.load('/back1.jpg');
+        const texture = loader.load('/nebulaback2.jpg');
         const material = new MeshPhongMaterial({
             map:texture,
         })
