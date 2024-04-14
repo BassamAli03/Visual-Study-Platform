@@ -13,8 +13,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/SignUp' element={<Login />}/>
-        <Route path='/ContactUs' element={<MyApp/>}/>
+        <Route path='/ContactUs' element={<Contactus/>}/>
         <Route path='/AboutUs' element={<Aboutus/>}/>
+        <Route path='/MainPage' element={<MainPage/>}/>
       </Routes>
     </div>
   );
