@@ -32,7 +32,7 @@ export let Contactus = () => {
   };
 
   const sendMail = () => {
-    axios.get("http://localhost:4000/", {
+    axios.get("http://localhost:4000/contactus", {
       params: {
         name,
         email,
