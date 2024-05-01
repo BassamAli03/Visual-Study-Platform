@@ -5,17 +5,47 @@ import { Label } from "./cardlabel";
 import { cn } from "../../utils/cn";
 import { useNavigate } from "react-router-dom";
 
-const ThreeCard = () => {
+export let ThreeCard = () => {
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted");
-  };
+  const [groupName, setGroupName] = useState("");
+  const [groupDesc, setGroupDesc] = useState("");
   const [groupPrivacy, setGroupPrivacy] = useState("private");
+  const [memberLimit, setMemberLimit] = useState(0);
+
+  const handleSubmit = async (e) => {
+    const userId = localStorage.getItem("userId");
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:4000/create-group", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: groupName,
+          description: groupDesc,
+          privacy: groupPrivacy,
+          memberLimit: memberLimit,
+          adminId: userId,
+        }),
+      });
+      if (response.ok) {
+        console.log("Group created successfully");
+        navigate("/Mainpage");
+      } else {
+        console.error("Failed to create group");
+        alert("Failed to create group. Please try again later.")
+      }
+    } catch (error) {
+      console.error("Error creating group:", error);
+   
+    }
+  };
 
   const handlePrivacyChange = (e) => {
     setGroupPrivacy(e.target.value);
   };
+
 
   return (
     <CardContainer className="inter-var group">
@@ -36,6 +66,8 @@ const ThreeCard = () => {
                   id="groupname"
                   placeholder="Software Engineering"
                   type="text"
+                  value={groupName}
+                onChange={(e) => setGroupName(e.target.value)}
                 />
               </LabelInputContainer>
             </div>
@@ -45,6 +77,8 @@ const ThreeCard = () => {
                   id="groupdesc"
                   placeholder="Add Description"
                   type="text"
+                  value={groupDesc}
+                onChange={(e) => setGroupDesc(e.target.value)}
                   style={{resize:"none",height:"60px"}}
                   
                 />
@@ -58,7 +92,7 @@ const ThreeCard = () => {
                   type="radio"
                   value="private"
                   checked={groupPrivacy === "private"}
-                  onChange={handlePrivacyChange}
+                onChange={handlePrivacyChange}
                   style={{ width: "30px", height: "30px" }} 
                 />
                 <label className="text-white ms-2">
@@ -83,6 +117,8 @@ const ThreeCard = () => {
                 type="number"
                 min="0"
                 max="20"
+                value={memberLimit}
+                onChange={(e) => setMemberLimit(e.target.value)}
               />
             </LabelInputContainer>
 
@@ -90,7 +126,7 @@ const ThreeCard = () => {
               className="bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-input group-hover:opacity-100"
               type="submit"
             >
-              Sign up
+              Create Group
             </button>
             <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-3 h-[1px] w-full" />
           </form>
@@ -113,5 +149,3 @@ const LabelInputContainer = ({ children, className }) => {
     </div>
   );
 };
-
-export default ThreeCard;

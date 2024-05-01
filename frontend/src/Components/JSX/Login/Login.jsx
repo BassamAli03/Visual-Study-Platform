@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { MyNavBar } from "../Home/Navbar.jsx";
 import { useNavigate } from 'react-router-dom';
 import "../../CSS/Login/login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,11 +39,19 @@ const Login = () => {
         },
       });
       if (response.ok) {
-        navigate("/MainPage");
+        const responseData = await response.json();
+      const userId = responseData.userId;
+      const token = responseData.token;
+      const name = responseData.name;
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("token", token);
+      localStorage.setItem("name", name);
+     
+        navigate("/createGroup");
         alert("Login successful");
         
       } else {
-        alert(response.status);
+        alert("Login failed");
         console.error("Login failed");
       }
     } catch (error) {
@@ -93,6 +102,10 @@ const Login = () => {
   });
 
   return (
+    <div>
+      <nav>
+      <MyNavBar/>
+      </nav>
     <div id="container1">
       <div id="forms-container">
         <div id="signin-signup">
@@ -229,6 +242,7 @@ const Login = () => {
           <img src="/login2.svg" id="image" alt="" />
         </div>
       </div>
+    </div>
     </div>
   );
 };

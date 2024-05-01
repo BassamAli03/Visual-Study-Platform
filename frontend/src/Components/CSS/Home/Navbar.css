@@ -5,7 +5,7 @@
 
 #navb1 #navlinks{
   font-size: 14px;
-    color: #ffffff;
+    color: #ece8e8;
 }
 
   
@@ -16,6 +16,4 @@
   nav .navbar-toggler:focus {
     box-shadow: none;
   }
-  
-  
-  
+ 

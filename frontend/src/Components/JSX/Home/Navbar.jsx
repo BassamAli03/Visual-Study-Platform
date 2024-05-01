@@ -26,7 +26,7 @@ export let MyNavBar=()=>{
           <Navbar.Toggle aria-controls='basic-navbar-nav' className='bg-light' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto justify-content-end w-100'>
-              <Nav.Link href='/' id='navlinks' className='text-uppercase'>Home</Nav.Link>
+              <Nav.Link onClick={() => navigate("/")}  id='navlinks' className='text-uppercase'>Home</Nav.Link>
               <Nav.Link onClick={() => navigate("/SignUp")}  id='navlinks' className='text-uppercase'>SignUp/Login</Nav.Link>
               <Nav.Link onClick={() => navigate("/AboutUs")} id='navlinks' className='text-uppercase'>About us</Nav.Link>
               <Nav.Link onClick={() => navigate("/ContactUs")} id='navlinks' className='text-uppercase'>Get in touch</Nav.Link>
