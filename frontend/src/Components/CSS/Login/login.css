@@ -4,7 +4,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: white;
+  background-color: rgba(74, 138, 233, 0.568);
   overflow: hidden;
   font-family: "Poppins", sans-serif;
   padding: 0;
@@ -12,6 +12,7 @@
   box-sizing: border-box;
 }
 #container1:before {
+
   content: "";
   position: absolute;
   width: 2000px;
@@ -203,6 +204,7 @@
 }
 
 .panel #content {
+  margin-top: 50px;
   color: white;
   transition: 0.9s 0.6s ease-in-out;
 }
@@ -260,6 +262,7 @@
 }
 
 #container1.sign-up-mode #signupform {
+  margin-top: 50px;
   z-index: 2;
   opacity: 1;
 }
@@ -297,8 +300,13 @@
     padding: 2.5rem 8%;
   }
   .panel #content {
+
     padding-right: 15%;
     transition: 0.9s 0.8s ease-in-out;
+  }
+  .right-panel #content{
+    margin-top:   380px;
+    margin-right: 80px;
   }
   .panel h3 {
     font-size: 1.2rem;
@@ -313,6 +321,7 @@
     font-size: 0.7rem;
   }
   #image, #image1 {
+    
     width: 200px;
     transition: 0.9s 0.6s ease-in-out;
   }
@@ -326,9 +335,11 @@
   .right-panel #image {
     transform: translateY(300px);
   }
+  
   #container1.sign-up-mode:before {
     transform: translate(-50%, 100%);
     bottom: 32%;
+    margin-bottom: -100px;
     right: initial;
   }
   #container1.sign-up-mode .left-panel #image1,
@@ -340,6 +351,9 @@
     top: 5%;
     transform: translate(-50%, 0);
     left: 50%;
+  }
+  #image, #image1{
+    display: none;
   }
 }
 
@@ -362,6 +376,22 @@
   #container1.sign-up-mode:before{
     bottom: 28%;
     left: 50%;
+    
   }
+  .right-panel #content p{
+    font-size: smaller;
+  }
+  .right-panel #content{
+    display: flex;
+  
+  }
+  .right-panel #content #sign-in-btn{
+    padding-left: 20px;
+    padding-right: 20px;
 
+  }
+}
+nav{
+
+  z-index: 999999;
 }
