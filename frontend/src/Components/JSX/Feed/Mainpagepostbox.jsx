@@ -1,81 +1,108 @@
-import React, {useRef} from "react";
+import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faMicrophone,
-    faVideo,
-    faImage,
-  } from "@fortawesome/free-solid-svg-icons";
-  import "../../CSS/Feed/Mainpagepostbox.css";
+  faMicrophone,
+  faVideo,
+  faImage,
+} from "@fortawesome/free-solid-svg-icons";
+import "../../CSS/Feed/Mainpagepostbox.css";
 
+export let PostDiv = (props) => {
+  const [formData, setFormData] = useState({
+    content: "",
+  });
 
+  const handleDataChange = (e) => {
+    if(props.groupId =="feed"){
+      alert("Select Group to post in")
+    }else
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  export let PostDiv = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(props.groupId =="feed"){
+      alert("Select Group to post in")
+    }else{
+      
+    const formDataToSend = new FormData();
+    formDataToSend.append("content", formData.content);
+    formDataToSend.append("groupId", props.groupId);
+    formDataToSend.append("image", imageInputRef.current.files[0]);
+    formDataToSend.append("video", videoInputRef.current.files[0]);
+    setFormData("");
 
-    const microphoneInputRef = useRef(null);
-    const videoInputRef = useRef(null);
-    const imageInputRef = useRef(null);
-  
-    const handleIconClick = (inputRef) => {
-      inputRef.current.click();
-    };
+    try {
+      const response = await fetch("http://localhost:4000/create-post", {
+        method: "POST",
+        body: formDataToSend,
+      });
+      if (response.ok) {
+        e.target.reset();
+      }
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
+    
+  }
+  };
+
+  const microphoneInputRef = useRef(null);
+  const videoInputRef = useRef(null);
+  const imageInputRef = useRef(null);
+
+  const handleIconClick = (inputRef) => {
+    inputRef.current.click();
+  };
 
   return (
-    <div id="postbox" className="mt-24 shadow-sm h-36 w-100">
-      <div className="flex">
-      <div className="w-12 h-12 rounded-full bg-blue-500 ms-2 mt-2">
-      <img
-        src=""
-        alt=""
-        className="profile-pic"
-      />
-      </div>
-      <textarea
-        placeholder="Write something..."
-        className="mt-3 ms-3 w-80 h-20" style={{ backgroundColor: "#6187bc8f", resize: "none" }}
-      ></textarea>
-      </div>
-
-      <div className="mt-2 flex justify-end gap-3 items-center">
-      <FontAwesomeIcon
-        icon={faMicrophone}
-        className="action-icon"
-        onClick={() => handleIconClick(microphoneInputRef)}
-      />
-      <input
-        type="file"
-        className="hidden"
-        ref={microphoneInputRef}
-        accept="audio/*"
-        onChange={(e) => console.log("Microphone file selected:", e.target.files[0])}
-      />
-        <FontAwesomeIcon
-        icon={faVideo}
-        className="action-icon"
-        onClick={() => handleIconClick(videoInputRef)}
-      />
-      <input
-        type="file"
-        className="hidden"
-        ref={videoInputRef}
-        accept="video/*"
-        onChange={(e) => console.log("Video file selected:", e.target.files[0])}
-      />
-        <FontAwesomeIcon
-        icon={faImage}
-        className="action-icon"
-        onClick={() => handleIconClick(imageInputRef)}
-      />
-      <input
-        type="file"
-        className="hidden"
-        ref={imageInputRef}
-        accept="image/*"
-        onChange={(e) => console.log("Image file selected:", e.target.files[0])}
-      />
-        <button className="post-button bg-primary rounded me-4 w-14 font-bold">
-          Post
-        </button>
+    <div id="postbox" className="mt-24 shadow-sm w-full">
+      <div className="flex items-center px-4 py-3">
+        <div className="w-12 h-12 rounded-full bg-blue-500 flex-shrink-0">
+          <img src="" alt="" className="profile-pic" />
+        </div>
+        <form className="ml-4 flex flex-col flex-grow" onSubmit={handleSubmit}>
+          <input
+            name="content"
+            type="text"
+            placeholder="Write something..."
+            className="h-12 px-4 py-2 bg-gray-200 rounded-md outline-none focus:ring focus:ring-blue-500"
+            value={formData.content}
+            onChange={handleDataChange} required
+          />
+          <div className="mt-2 flex space-x-2">
+            <input
+              type="file"
+              className="hidden"
+              ref={imageInputRef}
+              accept="image/*"
+            />
+            <FontAwesomeIcon
+              icon={faImage}
+              className="text-gray-900 cursor-pointer hover:text-gray-700"
+              onClick={() => handleIconClick(imageInputRef)}
+            />
+            <input
+              type="file"
+              className="hidden"
+              ref={videoInputRef}
+              accept="video/*"
+            />
+            <FontAwesomeIcon
+              icon={faVideo}
+              className="text-gray-900 cursor-pointer hover:text-gray-700"
+              onClick={() => handleIconClick(videoInputRef)}
+            />
+            
+            <button
+              type="submit"
+              className="px-4 py-2 bg-blue-500 text-black rounded-md hover:bg-blue-600 font-semibold"
+            >
+              Post
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
-  };
+};

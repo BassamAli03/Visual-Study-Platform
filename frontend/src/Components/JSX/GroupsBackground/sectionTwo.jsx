@@ -1,5 +1,5 @@
 import React from "react";
-import ThreeCardJoin from "../Group Comps/3dcardjoingroup";
+import {ThreeCardJoin} from "../Group Comps/3dcardjoingroup";
 
 const Section = () => {
   return (

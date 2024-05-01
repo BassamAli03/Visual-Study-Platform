@@ -56,10 +56,10 @@ export let MySidebar = ({ children }) => {
   );
 };
 
-export let Sidebaritem = ({ icon, text, active, alert }) => {
+export let Sidebaritem = ({ icon, text, active, alert ,func}) => {
   const { expanded } = useContext(SidebarContext);
   return (
-    <li
+    <li onClick={func}
       className={`relative flex items-center py-2 px-3 my-1 
                     font-medium rounded-md cursor-pointer transition-colors group 
                     ${

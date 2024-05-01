@@ -2,7 +2,6 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const contactus = express();
-const port = 4000;
 
 contactus.use(cors());
 contactus.use(express.json({ limit: "25mb" }));
@@ -38,12 +37,9 @@ function sendEmail({ name, email, message }) {
     })
   });
 }
-contactus.get("/", (req, res) => {
+contactus.get("/contactus", (req, res) => {
   sendEmail(req.query)
   .then((response) => res.send(response.message))
   .catch((error) => res.status(500).send(error.message))
 })
-
-contactus.listen(port,()=>{
-    console.log(`nodemailer is listening at http://localhost:${port}`)
-})
+module.exports=contactus;
