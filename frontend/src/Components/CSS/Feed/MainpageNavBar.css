@@ -4,30 +4,28 @@
     margin-top: 30px;
 }
 #mainnav{
-  background: linear-gradient(180deg, #4b389c -5.91%, #0e7d81 111.58%);
+  background: linear-gradient(180deg, #136276 -5.91%, #1c3380 111.58%);
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
 }
 #dropdown{
   margin-right: 20px;
 }
 #dropdown:hover{
-  color: #ffffff;
+  color: #c1d7de;
 }
 
 .navbar .nav-link {
     font-size: 15px;
-    color: black;
+    color: #c1d7de;
   }
   .navbar {
-    --hover-color: #ffffff;
+    --hover-color: #063C4A;
   }
   
   .navbar .navbar-nav .nav-link:hover {
     color: var(--hover-color);
   }
-  
-  
-  
+    
   nav .navbar-toggler:focus,
   nav .navbar-toggler:active {
       box-shadow: none;

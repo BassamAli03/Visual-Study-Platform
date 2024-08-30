@@ -1,30 +1,50 @@
-import {Scene as SceneThree } from "three";
+import { Scene as SceneThree } from "three";
 import Camera from "../class/camera";
 import Lights from "../class/lights";
 import Loader from "../class/loader";
-// import Sun from "../class/models/sun";
 import Background from "../class/background";
-// import Venus from "../class/models/venus";
-import Neptune from "../class/models/neptune";
 import Jupiter from "../class/models/jupiter";
+import Alien from "../class/models/alien";
 
 export default class CustomScene extends SceneThree {
   constructor(renderer) {
     super();
-    const loader = new Loader();
-    this._camera = new Camera();
-    //new Sun(this,loader);
+    this.initialize(renderer);
+  }
 
-    new Neptune(this,loader);
-    new Jupiter(this,loader);
-    //new Venus(this,loader);
-    new Background(this)
-    new Lights(this);
+  initialize(renderer) {
+    if (this.initialized) return; // Prevent re-initialization
+
+    this.loader = new Loader();
+    this.camera = new Camera();
+    this.lights = new Lights(this);
+    this.background = new Background(this);
+
+    // Load models
+    this.alien = new Alien(this, this.loader);
+    this.jupiter = new Jupiter(this, this.loader);
+
+    this.initialized = true; // Set flag to true after initialization
+
+    // Start the rendering loop
     this._update(renderer);
   }
 
   _update(renderer) {
-    renderer.render(this, this._camera);
-    requestAnimationFrame(this._update.bind(this, renderer));
+    if (!this.disposed) {
+      renderer.render(this, this.camera);
+      requestAnimationFrame(() => this._update(renderer));
+    }
+  }
+
+  // Ensure you properly dispose of resources and stop the rendering loop
+  dispose() {
+    this.disposed = true;
+    // Additional cleanup code here
+    this.children.forEach((child) => {
+      if (child.geometry) child.geometry.dispose();
+      if (child.material) child.material.dispose();
+      if (child.texture) child.texture.dispose();
+    });
   }
 }

@@ -9,9 +9,10 @@ import { useNavigate } from "react-router-dom";
 import { Contactus } from './Components/JSX/ContactUs/contactus';
 import { Aboutus } from './Components/JSX/AboutUs/Aboutus';
 import Login from './Components/JSX/Login/Login';
+import EditGroup from './Components/JSX/EditGroups/EditGroup';
 function App() {
-  
 
+  
   return (
     <div>
       <Routes>

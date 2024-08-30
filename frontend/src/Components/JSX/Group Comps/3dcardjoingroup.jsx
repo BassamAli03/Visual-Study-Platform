@@ -1,40 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CardBody, CardContainer } from "./threedimcard";
 import { Input } from "./cardinput";
 import { Label } from "./cardlabel";
 import { cn } from "../../utils/cn";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Import axios for making HTTP requests
+import axios from "axios";
 import { color } from "framer-motion";
 
-// Define the ThreeCardJoin component
 export let ThreeCardJoin = () => {
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query
-  const [searchResults, setSearchResults] = useState([]); // State for search results
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [allPublicGroups, setAllPublicGroups] = useState([]);
 
-  // Function to handle search input change
+  useEffect(() => {
+    // Fetch all public groups initially
+    const fetchPublicGroups = async () => {
+      const userId = localStorage.getItem("userId");
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/search-groups?privacy=public&userId=${userId}`
+        );
+        setAllPublicGroups(response.data.groups);
+        setSearchResults(response.data.groups);
+      } catch (error) {
+        console.error("Error fetching public groups:", error);
+      }
+    };
+
+    fetchPublicGroups();
+  }, []);
+
   const handleSearchInputChange = (e) => {
-    setSearchQuery(e.target.value);
-    // Call a function to fetch search results based on the input
-    fetchSearchResults(e.target.value);
-  };
-
-  // Function to fetch search results based on input
-  const fetchSearchResults = async (query) => {
-    try {
-      // Make a GET request to fetch search results
-      const response = await axios.get(
-        `http://localhost:4000/search-groups?query=${query}`
+    const query = e.target.value;
+    setSearchQuery(query);
+    if (query === "") {
+      setSearchResults(allPublicGroups);
+    } else {
+      const filteredGroups = allPublicGroups.filter((group) =>
+        group.name.toLowerCase().includes(query.toLowerCase())
       );
-      // Update the search results state with the fetched data
-      setSearchResults(response.data.groups);
-    } catch (error) {
-      console.error("Error fetching search results:", error);
+      setSearchResults(filteredGroups);
     }
   };
 
-  // Function to handle joining a group
   const handleJoinGroup = async (groupId) => {
     console.log(groupId);
     try {
@@ -62,9 +71,9 @@ export let ThreeCardJoin = () => {
   };
 
   return (
-    <CardContainer className="inter-var group">
+    <CardContainer className="me-40 inter-var group">
       <CardBody className="bg-black relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border group">
-        <div className="w-100 max-w-md w-full mx-auto">
+        <div className="max-w-md w-96 mx-auto">
           <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
             Welcome to Visual Study Groups
           </h2>
@@ -89,13 +98,11 @@ export let ThreeCardJoin = () => {
 
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
             <Label htmlFor="grouplist">List</Label>
-            <div>
+            <div className="mt-4">
               {searchResults.length === 0 ? (
                 <p className="text-white">
                   No groups found.{" "}
-                  <span
-                    className="text-blue-500 cursor-pointer"
-                  >
+                  <span className="text-blue-500 cursor-pointer">
                     Create a group
                   </span>
                 </p>
@@ -131,7 +138,6 @@ export let ThreeCardJoin = () => {
   );
 };
 
-// Define the LabelInputContainer component
 const LabelInputContainer = ({ children, className }) => {
   return (
     <div className={cn("flex flex-col space-y-2 w-full", className)}>

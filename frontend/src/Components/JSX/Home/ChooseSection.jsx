@@ -40,16 +40,16 @@ function ChooseSection() {
                   First Only Student's Platform
                 </Card.Title>
                 <Card.Text className="text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Impedit laborum qui facilis perspiciatis, ab pariatur! Eaque
-                  maxime ratione illum distinctio?
+                  Our platform is tailored exclusively for students, providing a
+                  dedicated space where academic pursuits take center stage. By
+                  fostering an environment solely for student engagement.
                 </Card.Text>
               </Card.Body>
             </Card>
           </div>
           <div className="col-lg-4">
             <Card className="d-flex align-items-center border-0 h-100">
-              <div className="mt-3">
+              <div>
                 <svg
                   className="custom-svg"
                   xmlns="http://www.w3.org/2000/svg"
@@ -82,16 +82,17 @@ function ChooseSection() {
                   We keep our students happy
                 </Card.Title>
                 <Card.Text className="text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Impedit laborum qui facilis perspiciatis, ab pariatur! Eaque
-                  maxime ratione illum distinctio?
+                  At the heart of our platform lies a commitment to keeping our
+                  students content and fulfilled. From intuitive user interfaces
+                  to responsive support systems, we prioritize your satisfaction
+                  at every turn.
                 </Card.Text>
               </Card.Body>
             </Card>
           </div>
           <div className="col-lg-4">
             <Card className="d-flex align-items-center border-0 h-100">
-              <div className="mt-3">
+              <div>
                 <svg
                   className="custom-svg"
                   xmlns="http://www.w3.org/2000/svg"
@@ -124,9 +125,10 @@ function ChooseSection() {
                   Virtual Platform
                 </Card.Title>
                 <Card.Text className="text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Impedit laborum qui facilis perspiciatis, ab pariatur! Eaque
-                  maxime ratione illum distinctio?
+                  Step into a world where learning knows no bounds with our
+                  virtual platform. Seamlessly blending convenience with
+                  innovation, our digital ecosystem offers a dynamic and
+                  learning environment.
                 </Card.Text>
               </Card.Body>
             </Card>

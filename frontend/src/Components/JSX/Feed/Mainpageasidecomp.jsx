@@ -1,10 +1,14 @@
-import React, { Children, createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { ChevronLeft, ChevronRight, MoreVertical } from "lucide-react";
 import "../../CSS/Feed/Mainpageasidecomp.css";
 
 const SidebarContext = createContext();
-export let MySidebar = ({ children }) => {
+export const MySidebar = ({ children }) => {
   const [expanded, setExpanded] = useState(false);
+  const name = localStorage.getItem("name");
+  const email = localStorage.getItem("email");
+  const profilepic =
+    localStorage.getItem("profilepic") || "/default-profile.png";
 
   return (
     <aside className="h-screen position-fixed mt-20">
@@ -35,8 +39,8 @@ export let MySidebar = ({ children }) => {
 
         <div className="border-t flex p-3 mb-20">
           <img
-            src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
-            alt=""
+            src={`http://localhost:4000/${profilepic}`}
+            alt="Profile"
             className="w-10 h-10 rounded-md"
           />
           <div
@@ -45,8 +49,8 @@ export let MySidebar = ({ children }) => {
             }`}
           >
             <div className="leading-4">
-              <h4 className="font-semibold text-white">Bassam</h4>
-              <span className="ms-1 text-xs text-white">bassam@gmail.com</span>
+              <h4 className="font-semibold text-white">{name}</h4>
+              <span className="ms-1 text-xs text-white">{email}</span>
             </div>
             <MoreVertical size={20} />
           </div>
@@ -56,18 +60,20 @@ export let MySidebar = ({ children }) => {
   );
 };
 
-export let Sidebaritem = ({ icon, text, active, alert ,func}) => {
+export const Sidebaritem = ({ icon, text, active, alert, func }) => {
   const { expanded } = useContext(SidebarContext);
   return (
-    <li onClick={func}
+    <li
+      onClick={func}
       className={`relative flex items-center py-2 px-3 my-1 
                     font-medium rounded-md cursor-pointer transition-colors group 
                     ${
                       active
                         ? "bg-gradient-to-r from-indio-200 to-indigo-100 text-black"
-                        : "hover:bg-indigo-50 text-white"
+                        : "hover:bg-indigo-50"
                     }
                   `}
+      style={{ color: "#c1d7de" }}
     >
       {icon}
       <span
