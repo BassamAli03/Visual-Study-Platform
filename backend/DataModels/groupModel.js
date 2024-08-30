@@ -6,7 +6,8 @@ const groupSchema = new mongoose.Schema({
   privacy: String,
   memberLimit: Number,
   adminId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, 
-  members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  groupprofilepic: String,
 });
 
 const Group = mongoose.model("Group", groupSchema);

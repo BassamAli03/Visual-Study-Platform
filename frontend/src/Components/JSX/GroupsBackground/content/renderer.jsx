@@ -13,7 +13,7 @@ export default class Renderer extends WebGL1Renderer {
 
   configure() {
     this.setSize(window.innerWidth, window.innerHeight);
-    window.addEventListener('resize', this.handleResize);
+    window.addEventListener("resize", this.handleResize);
   }
 
   handleResize = () => {
@@ -22,9 +22,7 @@ export default class Renderer extends WebGL1Renderer {
       this.setSize(window.innerWidth, window.innerHeight);
       this.renderScene();
     }, 200);
-  }
+  };
 
-  renderScene() {
-    
-  }
+  renderScene() {}
 }

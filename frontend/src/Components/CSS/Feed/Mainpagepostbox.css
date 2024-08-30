@@ -1,3 +1,9 @@
 #postbox{
-    background: linear-gradient(180deg, #4b389c -5.91%, #0e7d81 111.58%);
+    background: linear-gradient(180deg, #1c3380 -5.91%, #136276 111.58%);
+}
+#postbtn{
+    background: #a8cbd3;
+}
+#postbtn:hover{
+    background: #8abac6;
 }

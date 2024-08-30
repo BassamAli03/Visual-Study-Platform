@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -16,47 +16,39 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export let MyNavBar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        localStorage.removeItem("token");
+        navigate("/SignUp");
+      } else {
+        console.error("Failed to logout");
+      }
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
   return (
     <>
       <Navbar id="mainnav" expand="lg" className="position-fixed w-100 h-20">
         <Container>
           <Navbar.Brand>
-            <Link className="navbar-brand" style={{ pointerEvents: 'none' }}>
-              <img src={icon} alt="Icon" className="icon-img"  />
+            <Link className="navbar-brand" style={{ pointerEvents: "none" }}>
+              <img src={icon} alt="Icon" className="icon-img" />
             </Link>
           </Navbar.Brand>
-          <Dropdown id="dropdown" as={Nav.Item}>
-            <Dropdown.Toggle as={Nav.Link}>Home</Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Dropdown id="dropdown" as={Nav.Item}>
-            <Dropdown.Toggle as={Nav.Link}>Timeline</Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">View Groups</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Dropdown id="dropdown" as={Nav.Item}>
-            <Dropdown.Toggle as={Nav.Link}>Account Settings</Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">
-                Notification Settings
-              </Dropdown.Item>
-              <Dropdown.Item href="#/action-1">
-                Edit Account Information
-              </Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Privacy Settings</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
-            className="bg-light"
-          />
+
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto justify-content-end w-100 gap-3">
+            <Nav className="me-auto w-100 gap-3">
               <Nav.Link href="#" className="text-uppercase">
                 <FontAwesomeIcon
                   icon={faSearch}
@@ -75,6 +67,8 @@ export let MyNavBar = () => {
                   }}
                 />
               </Nav.Link>
+            </Nav>
+            <Nav className="me-auto justify-content-end  w-100 gap-3">
               <Nav.Link href="#" className="text-uppercase">
                 <FontAwesomeIcon
                   icon={faBell}
@@ -102,15 +96,20 @@ export let MyNavBar = () => {
                   }}
                 />
               </Nav.Link>
-              <Nav.Link href="#" className="text-uppercase">
-                <FontAwesomeIcon
-                  icon={faUser}
-                  className="w-5 h-5"
-                  onClick={() => {
-                    /* Add your onClick handler */
-                  }}
-                />
-              </Nav.Link>
+              <Dropdown id="dropdown" as={Nav.Item}>
+                <Dropdown.Toggle as={Nav.Link}>
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className="w-5 h-5"
+                    onClick={() => {
+                      /* Add your onClick handler */
+                    }}
+                  />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>

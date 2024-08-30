@@ -28,8 +28,9 @@
  
   .card-img {
     max-width: 100%;
-    height: auto;
     margin-bottom: 10px;
+    max-height: 400px;
+    margin: 0 auto;
   }
   
 
@@ -41,6 +42,7 @@
   
   
   .card-text {
+    margin-top: 10px;
     margin-bottom: 10px;
   }
   
@@ -58,11 +60,13 @@
     align-items: center;
     padding: 5px;
   }
-  
- 
-  .liked {
-    color: blue; 
-  }
+  .btn-like {
+    color: gray; /* default color */
+}
+
+.btn-like.liked {
+    color: blue; /* color when liked */
+}
   
   /* Thumbs-up icon */
   .thumbs-up-icon {

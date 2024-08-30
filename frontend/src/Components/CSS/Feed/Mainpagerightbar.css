@@ -1,4 +1,8 @@
 
 #mainrightbar{
-    background: linear-gradient(90.21deg, #0e7d81 -5.91%, #4b389c 111.58%);
+    background: linear-gradient(90.21deg, #1c3380 -5.91%, #136276 140.58%);
 }
+
+.selected {
+    border: 2px solid red;
+  }

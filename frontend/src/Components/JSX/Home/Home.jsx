@@ -21,10 +21,11 @@ export let Home = () => {
           <TypewriterEffectSmoothDemo />
           <br />
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque,
-            fugit? Doloremque deserunt ipsum eaque, dolor tempore, minima nisi
-            debitis, et quas voluptatibus nam ex. Necessitatibus eligendi
-            ratione expedita! Porro, ut.
+            Embark on a collaborative learning journey with our Virtual Study
+            Platform, where students converge to share knowledge, join vibrant
+            communities, and forge meaningful connections. Dive into engaging
+            discussions, access a wealth of resources, and enhance your academic
+            experience effortlessly.
           </p>
           <div className="d-flex flex-column flex-sm-row align-items-center">
             <button
@@ -53,8 +54,7 @@ export let Home = () => {
         <ChooseSection />
       </div>
 
-      
-      <AuroraBackgroundDemo/>
+      <AuroraBackgroundDemo />
 
       <div className="py-5">
         <FaqAccordion />
@@ -64,7 +64,7 @@ export let Home = () => {
         <div className="container d-flex flex-column align-items-center">
           <h2 className="text-center text-capitalize mb-5">Testimonials</h2>
           <InfiniteMovingCardsDemo />
-          <Link to="/blog">
+          <Link to="#">
             <button
               type="button"
               className="btn custom-btn btn-primary btn-lg mt-5 border-0"

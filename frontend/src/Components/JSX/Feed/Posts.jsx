@@ -7,86 +7,80 @@ const GroupPosts = (props) => {
   const [commentInputs, setCommentInputs] = useState([]);
   const [userName, setUserName] = useState("");
   const [showCommentInputs, setShowCommentInputs] = useState([]);
+  const [likingInProgress, setLikingInProgress] = useState([]);
   useEffect(() => {
-    let groupId = props.groupId;
     const fetchPosts = async () => {
-      try {
-        if(groupId=="feed"){
-          const response = await fetch("http://localhost:4000/fetch-user-all-posts", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              userId: localStorage.getItem("userId"),
-            }),
-          });
-        const data = await response.json();
+      const userId = localStorage.getItem("userId");
+      const body =
+        props.groupId === "feed"
+          ? { userId }
+          : { groupId: props.groupId, userId };
+
+      const response = await fetch(
+        props.groupId === "feed"
+          ? "http://localhost:4000/fetch-user-all-posts"
+          : "http://localhost:4000/fetch-posts",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
+      const data = await response.json();
+      if (JSON.stringify(data.posts) !== JSON.stringify(posts)) {
         setPosts(data.posts);
-        setCommentInputs(Array(data.posts.length).fill(""));
-        setShowCommentInputs(Array(data.posts.length).fill(false));
-      }
-      else{
-        const response = await fetch(`http://localhost:4000/fetch-posts`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ groupId }),
-          });
-        const data = await response.json();
-        setPosts(data.posts);
-        setCommentInputs(Array(data.posts.length).fill(""));
-        setShowCommentInputs(Array(data.posts.length).fill(false));
-      }
-      } catch (error) {
-        console.error("Error fetching posts:", error);
+        if (data.posts.length !== posts.length) {
+          setShowCommentInputs(data.posts.map(() => false));
+        }
       }
     };
 
     fetchPosts();
-
     const storedUserName = localStorage.getItem("name");
     if (storedUserName) {
       setUserName(storedUserName);
     }
-
-  
     const intervalId = setInterval(fetchPosts, 3000);
 
-
     return () => clearInterval(intervalId);
-  }, [props.groupId]); 
+  }, [props.groupId, posts]);
 
   const handleLike = async (postId, index) => {
+    if (likingInProgress.includes(postId)) return;
+    setLikingInProgress((prev) => [...prev, postId]);
+
     try {
       const response = await fetch(
         `http://localhost:4000/like-post/${postId}`,
         {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            action: posts[index].likedByUser ? "decrement" : "increment",
+            userId: localStorage.getItem("userId"),
+            action: posts[index].likedByUser ? "unlike" : "like",
           }),
         }
       );
-      if (response.ok) {
-        setPosts((prevPosts) =>
-          prevPosts.map((post, i) =>
-            i === index
-              ? {
-                  ...post,
-                  likes: post.likedByUser ? post.likes - 1 : post.likes + 1,
-                  likedByUser: !post.likedByUser,
-                }
-              : post
-          )
-        );
-      }
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.message);
+
+      // Update the post based on the response
+      setPosts((prevPosts) =>
+        prevPosts.map((post, idx) =>
+          idx === index
+            ? {
+                ...post,
+                likes: data.likes,
+                likedByUser: !post.likedByUser,
+              }
+            : post
+        )
+      );
     } catch (error) {
-      console.error("Error liking post:", error);
+      console.error("Error toggling like:", error);
+    } finally {
+      setLikingInProgress((prev) => prev.filter((id) => id !== postId));
     }
   };
 
@@ -131,81 +125,90 @@ const GroupPosts = (props) => {
 
   const toggleCommentSection = (index) => {
     setShowCommentInputs((prevInputs) =>
-      prevInputs.map((input, i) => (i === index ? !input : input))
+      prevInputs.map((input, idx) => (idx === index ? !input : input))
     );
   };
 
   return (
     <div className="container">
-      {posts && posts.map((post, index) => (
-        <div key={post._id} className="card-container">
-          <div className="card">
-            <div className="card-header">
-              <h5 className="card-title">{post.title}</h5>
-            </div>
-    
-            <div className="card-body">
-              {post.image && (
-                <img src={post.image.replace(/^.*[\\\/]/, "../../../../public/postUploads/") } className="card-img" alt="Post" />
-              )}
-              {post.video && (
-                <video controls className="card-video">
-                  <source src={post.video} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              )}
-              <p className="card-text">{post.content}</p>
-            </div>
-            <div className="card-footer">
-              <button
-                onClick={() => handleLike(post._id, index)}
-                className={`btn btn-like ${post.likedByUser ? "liked" : ""}`}
-              >
-                <FontAwesomeIcon icon={faThumbsUp} className="thumbs-up-icon" />
-                <span className="ms-1">{post.likes}</span>
-              </button>
-              <button
-                onClick={() => toggleCommentSection(index)}
-                className="btn btn-comment"
-              >
-                <FontAwesomeIcon icon={faComment} className="comment-icon" />
-                <span className="ms-1">Comment</span>
-              </button>
-            </div>
-            {showCommentInputs[index] && (
-              <div className="comments">
-                {post.comments.map((comment, i) => (
-                  <div key={i} className="comment">
-                    <strong>{comment.userName}: </strong>
-                    {comment.text}
-                  </div>
-                ))}
+      {posts &&
+        posts.map((post, index) => (
+          <div key={post._id} className="card-container">
+            <div className="card">
+              <div className="card-header">
+                <h5 className="card-title">{post.title}</h5>
               </div>
-            )}
-            {showCommentInputs[index] && (
-              <div className="add-comment">
-                <input
-                  type="text"
-                  value={commentInputs[index]}
-                  onChange={(e) => {
-                    const newInputs = [...commentInputs];
-                    newInputs[index] = e.target.value;
-                    setCommentInputs(newInputs);
-                  } }
-                  placeholder="Add a comment..."
-                  required
-                />
-                <button onClick={() => handleComment(post._id, index)}>
-                  Add
+
+              <div className="card-body">
+                {post.image && (
+                  <img
+                    src={`http://localhost:4000/${post.image}`}
+                    className="card-img"
+                    alt="Post"
+                  />
+                )}
+                {post.video && (
+                  <video controls className="card-video">
+                    <source
+                      src={`http://localhost:4000/${post.video}`}
+                      alt="Video"
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                )}
+                <p className="card-text">{post.content}</p>
+              </div>
+              <div className="card-footer">
+                <button
+                  onClick={() => handleLike(post._id, index)}
+                  className={`btn btn-like ${post.likedByUser ? "liked" : ""}`}
+                  disabled={likingInProgress.includes(post._id)}
+                >
+                  <FontAwesomeIcon icon={faThumbsUp} />
+                  <span className="ms-1">{post.likes}</span>
+                </button>
+                <button
+                  onClick={() => toggleCommentSection(index)}
+                  className="btn btn-comment"
+                >
+                  <FontAwesomeIcon icon={faComment} className="comment-icon" />
+                  <span className="ms-1">Comment</span>
                 </button>
               </div>
-            )}
+              {showCommentInputs[index] && (
+                <div className="comments">
+                  {post.comments.map((comment, i) => (
+                    <div key={i} className="comment">
+                      <strong>{comment.userName}: </strong>
+                      {comment.text}
+                    </div>
+                  ))}
+                </div>
+              )}
+              {showCommentInputs[index] && (
+                <div className="add-comment">
+                  <input
+                    type="text"
+                    value={commentInputs[index]}
+                    onChange={(e) => {
+                      const newInputs = [...commentInputs];
+                      newInputs[index] = e.target.value;
+                      setCommentInputs(newInputs);
+                    }}
+                    placeholder="Add a comment..."
+                    required
+                  />
+                  <button onClick={() => handleComment(post._id, index)}>
+                    Add
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };
 
 export default GroupPosts;
-
